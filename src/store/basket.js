@@ -11,15 +11,17 @@ export default {
                     state.basket.splice(state.basket.indexOf(dublicate), 1);
                 }
             } else {
-                state.basket.push(product)
+                state.basket.push({
+                    ...product,
+                    quantity
+                })
             }
         }
     },
     actions: {
-        updateState({commit, getters}, {product, quantity}) {
+        updateState({commit}, {product, quantity}) {
             commit('updateState', {product, quantity})
-            console.log(getters.sumPrices)
-        }
+        },
     },
     getters: {
         basket(state) {
@@ -32,5 +34,4 @@ export default {
             return state.basket.reduce((sum, {price, quantity}) => sum + (+price * quantity), 0)
         },
     }
-
 }

@@ -1,53 +1,70 @@
 <template>
-    <div class="d-flex flex-wrap-wrap align-items-stretch list">
-        <div
-                class="d-flex flex-direction-column item p-1 m-0_35"
-                v-for="product in products"
-                :key="product.id"
-        >
-            <div class="relative-parent figure">
-                <img :src="product.img" class="absolute-center img-contain">
-            </div>
-            <div class="flex d-flex flex-direction-column">
-                <div class="flex mt-1_5 name">{{product.name}}</div>
-                <div class="d-flex align-items-center justify-content-space-between mt-1">
-                    <div class="d-flex price">
-                        <span class="symbol">$</span> <span>{{product.price}}</span>
-                    </div>
-                    <div
-                            class="p-0_75 m--0_75 add-cart"
-                            @click="updateState(product, 1)"
-                    >
-                        <!--                        <img src="../../public/img/icons/add-cart.svg" class="img-full">-->
-                        <i class="fas fa-cart-plus" style="font-size: 17px;"></i>
+    <div>
+        <div class="d-flex flex-wrap-wrap align-items-stretch list" v-if="loading">
+            <div
+                    class="d-flex flex-direction-column item p-1 m-0_35"
+                    v-for="product in filterBy"
+                    :key="product.id"
+            >
+                <div class="like">
+                    <i class="fa fa-heart like-icon"></i>
+                </div>
+                <div class="relative-parent figure">
+                    <img :src="product.img" class="absolute-center img-contain">
+                </div>
+                <div class="flex d-flex flex-direction-column">
+                    <div class="flex mt-1_5 name">{{product.name | truncate(100, ' ...')}}</div>
+                    <div class="d-flex align-items-center justify-content-space-between mt-1">
+                        <div class="d-flex price">
+                            <span class="symbol">$</span> <span>{{product.price}}</span>
+                        </div>
+                        <div
+                                class="p-0_75 m--0_75 add-cart"
+                                @click="updateState(product, 1)"
+                        >
+                            <i class="fas fa-cart-plus" style="font-size: 17px;"></i>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
+        <Loading v-else/>
     </div>
 </template>
 
 <script>
+    import Loading from "./Loading";
+
     export default {
         name: "List",
+        props: ['stroke'],
+        components: {Loading},
         computed: {
             products() {
                 return this.$store.getters.products
             },
+            filterBy() {
+                return this.products.filter(product => {
+                    return product.name.toLowerCase().includes(this.stroke.toLowerCase()) || product.price.toLowerCase().includes(this.stroke.toLowerCase())
+
+                })
+            }
+        },
+        filters: {
+            truncate: (text, length, suffix) => text.substring(0, length) + suffix
         },
         methods: {
             updateState(product, quantity) {
                 return this.$store.dispatch('updateState', {product, quantity: quantity})
+            },
+            loading() {
+                return this.$store.getters.loading
             }
         }
     }
 </script>
 
 <style scoped>
-
-    .list {
-        margin: -0.35em;
-    }
 
     .item {
         width: calc(25% - 0.7em);
@@ -59,6 +76,19 @@
 
     .item:hover {
         box-shadow: 0 0 20px rgba(0, 0, 0, 0.33);
+    }
+
+    .like {
+
+    }
+
+    .like-icon {
+        color: #c7c7c7;
+        transition: 0.3s ease 0s;
+    }
+
+    .like:hover .like-icon {
+        color: #000;
     }
 
     .figure {

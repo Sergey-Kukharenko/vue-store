@@ -1,5 +1,9 @@
 <template>
-    <div class="fab">
+    <router-link
+            class="p-1 m--1 fab"
+            :to="'/basket'"
+            exact
+    >
         <div
                 :class="basketLength ? 'active' : ''"
                 class="basket"
@@ -12,7 +16,7 @@
                 </div>
             </div>
         </div>
-    </div>
+    </router-link>
 </template>
 
 <script>
@@ -32,7 +36,8 @@
         position: fixed;
         right: 8px;
         bottom: 8px;
-        z-index: 2;
+        z-index: 3;
+        color: #000;
     }
 
     .basket {
