@@ -1,5 +1,5 @@
 <template>
-    <div class="basket">
+    <div class="basket" :class="show ? 'active' : '' ">
         <div class="basket-background"></div>
         <div
                 class="d-flex align-items-stretch justify-content-space-between p-1 mt-0_5 mb-0_5 item"
@@ -39,6 +39,12 @@
 
     export default {
         name: "BasketModal",
+        data() {
+            return {
+                show: true,
+                timer: null
+            }
+        },
         computed: {
             basket() {
                 return this.$store.getters.basket
@@ -51,7 +57,16 @@
             updateState(product, quantity) {
                 return this.$store.dispatch('updateState', {product, quantity: quantity})
             }
-        }
+        },
+        watch: {
+            basket: function () {
+                this.show = true
+                clearTimeout(this.timer);
+                this.timer = setTimeout(() => {
+                    this.show = false
+                }, 3000)
+            }
+        },
     }
 </script>
 
@@ -59,6 +74,7 @@
 
     .basket {
         width: 400px;
+        display: none;
         position: fixed;
         right: 10px;
         bottom: 18px;
@@ -66,6 +82,10 @@
         z-index: 2;
         box-sizing: border-box;
         padding: 0 8px;
+    }
+
+    .fab:hover + .basket, .basket:hover, .basket.active {
+        display: block;
     }
 
     .basket-background {

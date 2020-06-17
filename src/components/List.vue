@@ -37,13 +37,33 @@
 
     export default {
         name: "List",
-        props: ['stroke'],
+        props: ['stroke', 'setFilter'],
         components: {Loading},
         computed: {
             products() {
                 return this.$store.getters.products
             },
             filterBy() {
+                    console.log(this.setFilter)
+                if (this.setFilter) {
+                    // console.log(this.products[this.filterStroke])
+                    // console.log(this.products)
+                    // console.log(this.products)
+
+
+                    const arr = this.products
+
+                    if(this.setFilter.type === 'min') {
+                        arr.sort((a, b) => a[this.setFilter.name] - b[this.setFilter.name])
+                    }
+                    if(this.setFilter.type === 'max') {
+                        arr.sort((a, b) => b[this.setFilter.name] - a[this.setFilter.name])
+                    }
+
+
+                }
+
+
                 return this.products.filter(product => {
                     return product.name.toLowerCase().includes(this.stroke.toLowerCase()) || product.price.toLowerCase().includes(this.stroke.toLowerCase())
 
@@ -54,6 +74,9 @@
             truncate: (text, length, suffix) => text.substring(0, length) + suffix
         },
         methods: {
+            sort(a, b) {
+                return (a.color > b.color) ? 1 : (a.color === b.color) ? ((a.size > b.size) ? 1 : -1) : -1
+            },
             updateState(product, quantity) {
                 return this.$store.dispatch('updateState', {product, quantity: quantity})
             },

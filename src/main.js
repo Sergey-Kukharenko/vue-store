@@ -22,6 +22,12 @@ new Vue({
       appId: "1:1059771963856:web:64a3c4fb67db591a6d01d5"
     });
 
+    fb.auth().onAuthStateChanged(user => {
+      if(user) {
+        this.$store.dispatch('autoLoginUser', user)
+      }
+    });
+
     this.$store.dispatch('fetchProducts')
   },
   render: h => h(App),

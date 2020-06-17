@@ -15,6 +15,7 @@ export default {
             state.user = payload;
         }
     },
+    // начать с 20
     actions: {
         async registerUser ({commit}, {email, password}) {
             commit('clearError')
@@ -51,9 +52,12 @@ export default {
         }
     },
     getters: {
-        user (state) {
+        user(state) {
             return state.user
         },
+        isUserLoggedIn(state) {
+            return state.user !== null;
+        }
 
     }
 }

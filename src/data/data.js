@@ -6,6 +6,8 @@ export default [
         img: '/img/products/macbook/1.jpg',
         date: new Date().toLocaleDateString(),
         price: '5990',
+        category: 'MacBook',
+        selected: false,
         quantity: 1
     },
     {
@@ -15,6 +17,8 @@ export default [
         img: '/img/products/iphone/1.jpg',
         date: new Date().toLocaleDateString(),
         price: '1020',
+        category: 'iPhone',
+        selected: false,
         quantity: 1
     },
     {
@@ -24,6 +28,8 @@ export default [
         img: '/img/products/ipad/1.jpg',
         date: new Date().toLocaleDateString(),
         price: '1020',
+        category: 'iPad',
+        selected: false,
         quantity: 1
     },
     {
@@ -33,6 +39,8 @@ export default [
         img: '/img/products/watch/1.jpg',
         date: new Date().toLocaleDateString(),
         price: '520',
+        category: 'Watch',
+        selected: false,
         quantity: 1
     },
     {
@@ -42,6 +50,8 @@ export default [
         img: '/img/products/airpods/1.jpg',
         date: new Date().toLocaleDateString(),
         price: '250',
+        category: 'AirPods',
+        selected: false,
         quantity: 1
     },
     {
@@ -51,6 +61,8 @@ export default [
         img: '/img/products/macbook/2.jpg',
         date: new Date().toLocaleDateString(),
         price: '4850',
+        category: 'MacBook',
+        selected: false,
         quantity: 1
     },
     {
@@ -60,6 +72,8 @@ export default [
         img: '/img/products/macbook/3.jpg',
         date: new Date().toLocaleDateString(),
         price: '4050',
+        category: 'MacBook',
+        selected: false,
         quantity: 1
     },
     {
@@ -69,6 +83,8 @@ export default [
         img: '/img/products/iphone/2.jpg',
         date: new Date().toLocaleDateString(),
         price: '1020',
+        category: 'iPhone',
+        selected: false,
         quantity: 1
     },
     {
@@ -78,6 +94,8 @@ export default [
         img: '/img/products/ipad/3.jpg',
         date: new Date().toLocaleDateString(),
         price: '1750',
+        category: 'iPad',
+        selected: false,
         quantity: 1
     },
     {
@@ -87,6 +105,8 @@ export default [
         img: '/img/products/ipad/4.jpg',
         date: new Date().toLocaleDateString(),
         price: '1550',
+        category: 'iPad',
+        selected: false,
         quantity: 1
     },
     {
@@ -96,6 +116,8 @@ export default [
         img: '/img/products/macbook/3.jpg',
         date: new Date().toLocaleDateString(),
         price: '3600',
+        category: 'MacBook',
+        selected: false,
         quantity: 1
     },
     {
@@ -105,6 +127,8 @@ export default [
         img: '/img/products/macbook/4.jpg',
         date: new Date().toLocaleDateString(),
         price: '2500',
+        category: 'MacBook',
+        selected: false,
         quantity: 1
     }
 ]

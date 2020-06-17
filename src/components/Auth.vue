@@ -59,7 +59,7 @@
                         class="d-flex p-0_75 button-text button"
                         type="submit"
                         :loading="loading"
-                        :disabled="$v.$invalid || !loading"
+                        :disabled="$v.$invalid || loading"
                 >
                     <span>Sign</span>
                     <span class="ml-0_2" v-if="isRegistered">In</span>
@@ -79,7 +79,7 @@
 
 <script>
     import {email, minLength, required, sameAs} from 'vuelidate/lib/validators'
-    // 18 урок
+
     export default {
         name: "Auth",
         data() {
@@ -101,7 +101,6 @@
                 document.body.classList.remove('is-authentication')
             },
             onSubmit() {
-                console.log(this.isRegistered)
                 const user = {
                     email: this.email,
                     password: this.password
@@ -119,7 +118,7 @@
                         .catch(err => console.log(err))
                 }
 
-                // this.hideAuth()
+                this.hideAuth()
                 this.reset()
 
             },

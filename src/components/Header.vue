@@ -3,10 +3,47 @@
         <div class="d-flex justify-content-space-between">
             <div></div>
             <div class="d-flex align-items-center">
-                <div class="auth" @click="showAuth">
-                    <svg aria-hidden="true" ocusable="false" data-prefix="fas" data-icon="sign-in-alt" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="svg-inline--fa fa-sign-in-alt fa-w-16 fa-3x img-full auth-icon"><path fill="currentColor" d="M416 448h-84c-6.6 0-12-5.4-12-12v-40c0-6.6 5.4-12 12-12h84c17.7 0 32-14.3 32-32V160c0-17.7-14.3-32-32-32h-84c-6.6 0-12-5.4-12-12V76c0-6.6 5.4-12 12-12h84c53 0 96 43 96 96v192c0 53-43 96-96 96zm-47-201L201 79c-15-15-41-4.5-41 17v96H24c-13.3 0-24 10.7-24 24v96c0 13.3 10.7 24 24 24h136v96c0 21.5 26 32 41 17l168-168c9.3-9.4 9.3-24.6 0-34z" class=""></path></svg>
+                <div
+                        class="pt-0_5 pb-0_5 pl-0_35 pr-0_35 filter-box active"
+                        :class="filter ? 'active' : ''"
+                >
+                    <div class="animate-icon filter-button" @click="toggleFilter">
+                        <img src="../../public/img/icons/filter.svg" class="filter-icon" alt="filter-icon">
+                    </div>
+                    <div class="filter">
+                        <div
+                                class="filter-item reveal"
+                                v-for="(item, index) of filtersItem"
+                                :key="index"
+                                :class="{active: index == selected}"
+                                @click="selected = index, setFilter(item)"
+                        >
+                            <span class="reveal-text filter-content">
+                               <span class="filter-text">
+                                    {{item.text}}
+                                </span>
+                            </span>
+
+                        </div>
+                    </div>
                 </div>
-                <form class="d-flex align-items-center form" @submit="(e) => {e.preventDefault()}">
+                <div class="d-flex align-items-center auth-links">
+                    <div
+                            class="pt-0_5 pb-0_5 pl-0_35 pr-0_35 animate-icon auth"
+                            @click="showAuth"
+                            v-if="!isUserLoggedIn"
+                    >
+                        <img src="../../public/img/icons/user.svg" class="img-full">
+                    </div>
+                    <div
+                            class="pt-0_5 pb-0_5 pl-0_35 pr-0_35 animate-icon auth"
+                            @click="onLogout"
+                            v-else
+                    >
+                        <img src="../../public/img/icons/sign-in.svg" class="img-full">
+                    </div>
+                </div>
+                <form class="d-flex align-items-center ml-0_5 form" @submit="(e) => {e.preventDefault()}">
                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16" fill="none"
                          role="img"
                          class="flex-shrink-none icon">
@@ -33,7 +70,13 @@
         data() {
             return {
                 search: '',
-                scrlY: ''
+                scrlY: '',
+                filter: false,
+                selected: null,
+                filtersItem: [
+                    {name: 'price', text: 'price min', selected: false, type: 'min'},
+                    {name: 'price', text: 'price max', selected: false, type: 'max'},
+                ]
             }
         },
         methods: {
@@ -42,6 +85,29 @@
             },
             showAuth() {
                 document.body.classList.add('is-authentication')
+            },
+            toggleFilter() {
+                this.filter = !this.filter
+            },
+
+            setFilter(item) {
+                this.$emit('setFilter', item)
+            },
+            // activeItem(item, index) { // add to current and remove siblings
+            //     this.filtersItem.forEach((filterItem, i) => {
+            //         if (index === i) {
+            //             return item.selected = !item.selected
+            //         }
+            //         return filterItem.selected = false;
+            //     });
+            // },
+            onLogout() {
+                return this.$store.dispatch('logoutUser')
+            }
+        },
+        computed: {
+            isUserLoggedIn() {
+                return this.$store.getters.isUserLoggedIn
             }
         },
         directives: {
@@ -72,26 +138,108 @@
         /*transition: 0.3s ease 0s;*/
     }
 
-    .header.active{
+    .header.active {
         border-radius: 0 0 16px 16px;
     }
 
-    .auth{
+    .filter-box {
+        position: relative;
+    }
+
+    .filter-button {
+        cursor: pointer;
+    }
+
+    .filter-icon {
+        width: 14px;
+    }
+
+    .filter {
+        position: absolute;
+        right: 0;
+        padding: 0.25em 0;
+        margin-top: 0.25em;
+        background: #fff;
+        border-radius: 16px;
+        overflow: hidden;
+        visibility: hidden;
+        box-shadow: 0 0 20px rgba(0, 0, 0, 0.33);
+        opacity: 0;
+        transform: translateY(10%);
+        transition: visibility 0s ease 0.3s, transform 0.3s ease 0s, opacity 0.3s ease 0s;
+    }
+
+    .filter-box.active .filter {
+        opacity: 1;
+        visibility: visible;
+        transform: translateY(0%);
+        transition: visibility 0s ease 0s, transform 0.3s ease 0s, opacity 0.3s ease 0s;
+    }
+
+    .filter-item {
+        position: relative;
+        padding: 0.1em 0.5em;
+        color: #000;
+        border-radius: 6px;
+        cursor: pointer;
+        transition: 0.3s ease 0s;
+    }
+
+    .filter-content:before {
+        content: "";
+        position: absolute;
+        z-index: 2;
+        top: 4px;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background-color: #000;
+        pointer-events: none;
+        transform-origin: 50% 50%;
+        transform: translateY(100%);
+        transition: 0.3s cubic-bezier(0.0, 0.0, 0.2, 1) 0s;
+    }
+
+    .filter-item.active .filter-content:before {
+        transform: translateY(0%);
+    }
+
+    .filter-content{
+        display: inline-block;
+        position: relative;
+        overflow: hidden;
+
+    }
+
+    .filter-text{
+        font-size: 1em;
+        font-weight: 600;
+        letter-spacing: 0.2px;
+        line-height: normal;
+        position: relative;
+        z-index: 3;
+        white-space: nowrap;
+        transition: color 0.3s cubic-bezier(0.0, 0.0, 0.2, 1) 0s;
+    }
+
+    .filter-item.active .filter-text{
+        color: #fff;
+    }
+
+    .auth {
         width: 20px;
         height: 20px;
-        padding: 0.5em;
-        margin: 0 0.5em;
         cursor: pointer;
         border-radius: 50%;
     }
 
-    .auth-icon > path{
-        fill: #9E9EA7;
-        transition: 0.3s ease 0s;
+    .animate-icon {
+        opacity: 0.4;
+        transition: opacity 0.3s ease 0s;
     }
 
-    .auth:hover .auth-icon > path{
-        fill: #000;
+    .animate-icon:hover, .filter-box.active .animate-icon {
+        opacity: 1;
     }
 
     .form {
