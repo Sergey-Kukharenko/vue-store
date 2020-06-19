@@ -4,11 +4,11 @@ export default {
     },
     mutations: {
         updateState(state, {product, quantity}) {
-            const dublicate = state.basket.find(item => item.id == product.id)
-            if (dublicate) {
-                dublicate.quantity += quantity;
-                if (dublicate.quantity === 0) {
-                    state.basket.splice(state.basket.indexOf(dublicate), 1);
+            const duplicate = state.basket.find(item => item.id == product.id)
+            if (duplicate) {
+                duplicate.quantity += quantity;
+                if (duplicate.quantity === 0) {
+                    state.basket.splice(state.basket.indexOf(duplicate), 1);
                 }
             } else {
                 state.basket.push({
@@ -16,7 +16,8 @@ export default {
                     quantity
                 })
             }
-        }
+        },
+
     },
     actions: {
         updateState({commit}, {product, quantity}) {

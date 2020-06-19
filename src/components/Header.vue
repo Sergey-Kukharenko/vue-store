@@ -58,7 +58,6 @@
                     >
                 </form>
             </div>
-
         </div>
     </div>
 </template>
@@ -74,8 +73,11 @@
                 filter: false,
                 selected: null,
                 filtersItem: [
+                    {name: 'all', text: 'all', selected: false, type: 'all'},
                     {name: 'price', text: 'price min', selected: false, type: 'min'},
                     {name: 'price', text: 'price max', selected: false, type: 'max'},
+                    {name: 'rating', text: 'rating', selected: false, type: 'rating'},
+                    {name: 'favorite', text: 'favorite', selected: false, type: 'favorite'},
                 ]
             }
         },
@@ -89,7 +91,6 @@
             toggleFilter() {
                 this.filter = !this.filter
             },
-
             setFilter(item) {
                 this.$emit('setFilter', item)
             },

@@ -29,6 +29,7 @@ new Vue({
     });
 
     this.$store.dispatch('fetchProducts')
+    this.$store.dispatch('fetchFavorites')
   },
   render: h => h(App),
 }).$mount('#app')

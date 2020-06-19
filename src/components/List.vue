@@ -3,10 +3,14 @@
         <div class="d-flex flex-wrap-wrap align-items-stretch list" v-if="loading">
             <div
                     class="d-flex flex-direction-column item p-1 m-0_35"
-                    v-for="product in filterBy"
+                    v-for="product in multipleFilter"
                     :key="product.id"
             >
-                <div class="like">
+                <div
+                        class="like"
+                        :class="{active: product.favorite}"
+                        @click="toggleLike(product), updateFavorites(product)"
+                >
                     <i class="fa fa-heart like-icon"></i>
                 </div>
                 <div class="relative-parent figure">
@@ -43,42 +47,65 @@
             products() {
                 return this.$store.getters.products
             },
-            filterBy() {
-                    console.log(this.setFilter)
-                if (this.setFilter) {
-                    // console.log(this.products[this.filterStroke])
-                    // console.log(this.products)
-                    // console.log(this.products)
+            multipleFilter() {
+                const arr = this.products
 
+                const favorite = (arr, key) => arr.filter(item => item[key])
+                const min = (arr, obj, key) => arr.sort((a, b) => a[obj[key]] - b[obj[key]])
+                const max = (arr, obj, key) => arr.sort((a, b) => b[obj[key]] - a[obj[key]])
 
-                    const arr = this.products
+                const compose = (...functions) => args => functions.reduceRight((arg, fn) => fn(arg), args)
+                const multipleSearch = stroke => array => array.filter(obj => Object.values(obj).some(val => val?val.toString().toLowerCase().includes(stroke.toLowerCase()):false))
+                const setFilter = obj => arr => {
 
-                    if(this.setFilter.type === 'min') {
-                        arr.sort((a, b) => a[this.setFilter.name] - b[this.setFilter.name])
+                    switch (obj.type) {
+                        case 'min':
+                            return min(arr, obj, 'name')
+
+                        case 'max':
+                            return max(arr, obj, 'name')
+
+                        case 'favorite':
+                            return favorite(arr, 'favorite')
+
+                        case 'all':
+                            return arr
+
+                        default:
+                            return arr;
                     }
-                    if(this.setFilter.type === 'max') {
-                        arr.sort((a, b) => b[this.setFilter.name] - a[this.setFilter.name])
-                    }
-
-
                 }
 
+                return compose(
+                    setFilter(this.setFilter),
+                    multipleSearch(this.stroke)
+                )(arr)
 
-                return this.products.filter(product => {
-                    return product.name.toLowerCase().includes(this.stroke.toLowerCase()) || product.price.toLowerCase().includes(this.stroke.toLowerCase())
-
-                })
             }
         },
         filters: {
             truncate: (text, length, suffix) => text.substring(0, length) + suffix
         },
         methods: {
-            sort(a, b) {
-                return (a.color > b.color) ? 1 : (a.color === b.color) ? ((a.size > b.size) ? 1 : -1) : -1
+            toggleLike(product) {
+                return product.favorite = !product.favorite
+            },
+            favorite(arr) {
+                return arr.filter(item => {
+                    return item.favorite
+                })
+            },
+            min(arr, obj, key) {
+                return arr.sort((a, b) => a[obj[key]] - b[obj[key]])
+            },
+            max(arr, obj, key) {
+                return arr.sort((a, b) => b[obj[key]] - a[obj[key]])
             },
             updateState(product, quantity) {
                 return this.$store.dispatch('updateState', {product, quantity: quantity})
+            },
+            updateFavorites(payload) {
+                return this.$store.dispatch('updateFavorites', payload)
             },
             loading() {
                 return this.$store.getters.loading
@@ -102,7 +129,7 @@
     }
 
     .like {
-
+        cursor: pointer;
     }
 
     .like-icon {
@@ -110,7 +137,7 @@
         transition: 0.3s ease 0s;
     }
 
-    .like:hover .like-icon {
+    .like:hover .like-icon, .like.active .like-icon {
         color: #000;
     }
 

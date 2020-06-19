@@ -32,7 +32,7 @@ export default {
                 commit('setLoading', false);
                 throw error;
             }
-        }
+        },
     },
     getters: {
         products(state) {

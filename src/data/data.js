@@ -7,7 +7,8 @@ export default [
         date: new Date().toLocaleDateString(),
         price: '5990',
         category: 'MacBook',
-        selected: false,
+        rating: '200',
+        favorite: false,
         quantity: 1
     },
     {
@@ -18,7 +19,8 @@ export default [
         date: new Date().toLocaleDateString(),
         price: '1020',
         category: 'iPhone',
-        selected: false,
+        rating: '45',
+        favorite: false,
         quantity: 1
     },
     {
@@ -29,7 +31,8 @@ export default [
         date: new Date().toLocaleDateString(),
         price: '1020',
         category: 'iPad',
-        selected: false,
+        rating: '12',
+        favorite: false,
         quantity: 1
     },
     {
@@ -40,7 +43,8 @@ export default [
         date: new Date().toLocaleDateString(),
         price: '520',
         category: 'Watch',
-        selected: false,
+        rating: '55',
+        favorite: false,
         quantity: 1
     },
     {
@@ -51,7 +55,8 @@ export default [
         date: new Date().toLocaleDateString(),
         price: '250',
         category: 'AirPods',
-        selected: false,
+        rating: '98',
+        favorite: false,
         quantity: 1
     },
     {
@@ -62,7 +67,8 @@ export default [
         date: new Date().toLocaleDateString(),
         price: '4850',
         category: 'MacBook',
-        selected: false,
+        rating: '456',
+        favorite: true,
         quantity: 1
     },
     {
@@ -73,7 +79,8 @@ export default [
         date: new Date().toLocaleDateString(),
         price: '4050',
         category: 'MacBook',
-        selected: false,
+        rating: '32',
+        favorite: false,
         quantity: 1
     },
     {
@@ -84,7 +91,8 @@ export default [
         date: new Date().toLocaleDateString(),
         price: '1020',
         category: 'iPhone',
-        selected: false,
+        rating: '77',
+        favorite: true,
         quantity: 1
     },
     {
@@ -95,7 +103,8 @@ export default [
         date: new Date().toLocaleDateString(),
         price: '1750',
         category: 'iPad',
-        selected: false,
+        rating: '67',
+        favorite: false,
         quantity: 1
     },
     {
@@ -106,7 +115,8 @@ export default [
         date: new Date().toLocaleDateString(),
         price: '1550',
         category: 'iPad',
-        selected: false,
+        rating: '98',
+        favorite: true,
         quantity: 1
     },
     {
@@ -117,7 +127,8 @@ export default [
         date: new Date().toLocaleDateString(),
         price: '3600',
         category: 'MacBook',
-        selected: false,
+        rating: '63',
+        favorite: false,
         quantity: 1
     },
     {
@@ -128,7 +139,8 @@ export default [
         date: new Date().toLocaleDateString(),
         price: '2500',
         category: 'MacBook',
-        selected: false,
+        rating: '600',
+        favorite: true,
         quantity: 1
     }
 ]
