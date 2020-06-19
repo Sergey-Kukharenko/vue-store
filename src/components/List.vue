@@ -13,11 +13,21 @@
                 >
                     <i class="fa fa-heart like-icon"></i>
                 </div>
-                <div class="relative-parent figure">
+                <router-link
+                        class="relative-parent figure"
+                        :to="'/products/'+ product.id"
+                        exact
+                >
                     <img :src="product.img" class="absolute-center img-contain">
-                </div>
+                </router-link>
                 <div class="flex d-flex flex-direction-column">
-                    <div class="flex mt-1_5 name">{{product.name | truncate(100, ' ...')}}</div>
+                    <router-link
+                            class="flex mt-1_5 name"
+                            :to="'/products/'+ product.id"
+                            exact
+                    >
+                        {{product.name | truncate(100, ' ...')}}
+                    </router-link>
                     <div class="d-flex align-items-center justify-content-space-between mt-1">
                         <div class="d-flex price">
                             <span class="symbol">$</span> <span>{{product.price}}</span>
@@ -157,6 +167,7 @@
         font-size: 1em;
         font-weight: 600;
         line-height: 1.15em;
+        color: #000;
     }
 
     .price {

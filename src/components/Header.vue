@@ -4,8 +4,8 @@
             <div></div>
             <div class="d-flex align-items-center">
                 <div
-                        class="pt-0_5 pb-0_5 pl-0_35 pr-0_35 filter-box active"
-                        :class="filter ? 'active' : ''"
+                        class="pt-0_5 pb-0_5 pl-0_35 pr-0_35 filter-box"
+                        :class="{active: filter}"
                 >
                     <div class="animate-icon filter-button" @click="toggleFilter">
                         <img src="../../public/img/icons/filter.svg" class="filter-icon" alt="filter-icon">
@@ -158,7 +158,7 @@
     .filter {
         position: absolute;
         right: 0;
-        padding: 0.25em 0;
+        padding: 0.5em 0;
         margin-top: 0.25em;
         background: #fff;
         border-radius: 16px;
@@ -179,7 +179,7 @@
 
     .filter-item {
         position: relative;
-        padding: 0.1em 0.5em;
+        margin-right: 0.75em;
         color: #000;
         border-radius: 6px;
         cursor: pointer;
@@ -196,13 +196,15 @@
         bottom: 0;
         background-color: #000;
         pointer-events: none;
+        opacity: 0;
         transform-origin: 50% 50%;
-        transform: translateY(100%);
-        transition: 0.3s cubic-bezier(0.0, 0.0, 0.2, 1) 0s;
+        transform: scale(0.8);
+        transition: opacity 0.9s cubic-bezier(0.0, 0.0, 0.2, 1) 0s, transform 0.3s cubic-bezier(0.0, 0.0, 0.2, 1) 0s;
     }
 
     .filter-item.active .filter-content:before {
-        transform: translateY(0%);
+        opacity: 1;
+        transform: scale(1);
     }
 
     .filter-content{
@@ -212,13 +214,14 @@
 
     }
 
-    .filter-text{
+    .filter-text {
         font-size: 1em;
         font-weight: 600;
         letter-spacing: 0.2px;
         line-height: normal;
         position: relative;
         z-index: 3;
+        padding: 0 0.3em;
         white-space: nowrap;
         transition: color 0.3s cubic-bezier(0.0, 0.0, 0.2, 1) 0s;
     }

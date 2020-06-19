@@ -1,10 +1,11 @@
 <template>
-    <h1>Detail</h1>
+    <h1>Detail {{id}}</h1>
 </template>
 
 <script>
     export default {
-        name: "Detail"
+        name: "Detail",
+        props: ['id'],
     }
 </script>
 
