@@ -1,11 +1,11 @@
 <template>
     <router-link
+            :class="{active: basketLength}"
             class="p-1 m--1 fab"
             :to="'/basket'"
             exact
     >
         <div
-                :class="basketLength ? 'active' : ''"
                 class="basket"
         >
             <i class="fas fa-shopping-cart icon" style="font-size: 17px;"></i>
@@ -36,8 +36,19 @@
         position: fixed;
         right: 8px;
         bottom: 8px;
-        z-index: 3;
+        z-index: 2;
         color: #000;
+        visibility: hidden;
+        transition: 0.3s ease 0s;
+    }
+
+    .fab.active {
+        visibility: visible;
+    }
+
+    @media (max-width: 1024px) {
+
+
     }
 
     .basket {
@@ -51,7 +62,7 @@
         transition: 0.3s ease 0s;
     }
 
-    .basket.active .icon, .basket:hover .icon {
+    .fab.active .basket .icon, .basket:hover .icon {
         opacity: 1;
         transform: scale(1);
     }
@@ -74,7 +85,7 @@
         transition: 0.3s ease 0.075s;
     }
 
-    .basket.active .count-background, .basket:hover .count-background {
+    .fab.active .basket .count-background, .basket:hover .count-background {
         opacity: 1;
         transform: scale(1);
     }
@@ -90,7 +101,7 @@
         transition: 0.3s ease 0.3s;
     }
 
-    .basket.active .count-text, .basket:hover .count-text {
+    .fab.active .basket .count-text, .basket:hover .count-text {
         opacity: 1;
         transform: scale(1);
     }

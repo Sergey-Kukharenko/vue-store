@@ -1,5 +1,5 @@
 <template>
-    <div class="d-flex justify-content-space-between basket">
+    <div class="d-flex justify-content-space-between basket" v-if="loading">
         <div class="d-flex flex-wrap-wrap align-items-stretch list">
             <div
                     class="d-flex align-items-stretch justify-content-space-between p-1 m-0_35 item"
@@ -41,12 +41,15 @@
             <div class="p-1 mt-1 text-bold pay" @click="result">pay</div>
         </div>
     </div>
+    <Loading v-else/>
 </template>
 
 <script>
+    import Loading from "../components/Loading";
 
     export default {
         name: "Basket",
+        components: {Loading},
         computed: {
             basket() {
                 return this.$store.getters.basket
@@ -60,13 +63,34 @@
         // },
         methods: {
             updateState(product, quantity) {
-                return this.$store.dispatch('updateState', {product, quantity: quantity})
+                return this.$store.dispatch('updateState', {product, quantity: quantity}).then(() => {
+                    if (!this.basketLength()) {
+                        this.$router.push('/');
+                    }
+
+                }).catch(() => {
+                })
             },
             getBasket() {
                 return this.$store.getters.basket
             },
+            basketLength() {
+                return this.$store.getters.basketLength
+            },
             result() {
-                alert(JSON.stringify(this.getBasket(), null, 4));
+                // alert(JSON.stringify(this.getBasket(), null, 4));
+                return this.$store.dispatch('sendOrder').then(() => {
+                    this.$router.push('/');
+                }).catch(() => {
+                })
+            },
+            loading() {
+                return this.$store.getters.loading
+            }
+        },
+        beforeMount() {
+            if (this.basketLength() === 0) {
+                this.$router.push('/');
             }
         }
     }

@@ -30,6 +30,8 @@ new Vue({
 
     this.$store.dispatch('fetchProducts')
     this.$store.dispatch('fetchFavorites')
+    this.$store.dispatch('fetchBasket')
+    this.$store.dispatch('fetchLocalStorage')
   },
   render: h => h(App),
 }).$mount('#app')

@@ -7,6 +7,27 @@
 <script>
   export default {
     name: 'App',
+    created() {
+      this.leavePage()
+    },
+    methods: {
+      leavePage() {
+        const isOnIOS = navigator.userAgent.match(/iPad/i) || navigator.userAgent.match(/iPhone/i);
+        const eventName = isOnIOS ? "pagehide" : "beforeunload";
+        window.addEventListener(eventName, this.send)
+      },
+      send() {
+        this.saveLocalStorage()
+        return this.$store.dispatch('addedItems')
+      },
+      getAdds() {
+        return this.$store.getters.basket
+      },
+      saveLocalStorage() {
+        const parsed = JSON.stringify(this.getAdds());
+        localStorage.setItem('key', parsed);
+      }
+    }
   }
 </script>
 

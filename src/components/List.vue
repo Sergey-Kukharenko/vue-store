@@ -48,6 +48,7 @@
 
 <script>
     import Loading from "./Loading";
+    import {compose} from "../utils";
 
     export default {
         name: "List",
@@ -64,7 +65,6 @@
                 const min = (arr, obj, key) => arr.sort((a, b) => a[obj[key]] - b[obj[key]])
                 const max = (arr, obj, key) => arr.sort((a, b) => b[obj[key]] - a[obj[key]])
 
-                const compose = (...functions) => args => functions.reduceRight((arg, fn) => fn(arg), args)
                 const multipleSearch = stroke => array => array.filter(obj => Object.values(obj).some(val => val?val.toString().toLowerCase().includes(stroke.toLowerCase()):false))
                 const setFilter = obj => arr => {
 

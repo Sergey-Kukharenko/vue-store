@@ -1,5 +1,5 @@
 <template>
-    <div class="basket" :class="show ? 'active' : '' ">
+    <div class="basket" :class="{active: show}">
         <div class="basket-background"></div>
         <div
                 class="d-flex align-items-stretch justify-content-space-between p-1 mt-0_5 mb-0_5 item"
@@ -41,7 +41,7 @@
         name: "BasketModal",
         data() {
             return {
-                show: true,
+                show: false,
                 timer: null
             }
         },
@@ -79,12 +79,12 @@
         right: 10px;
         bottom: 18px;
         margin: auto;
-        z-index: 2;
+        z-index: 1;
         box-sizing: border-box;
         padding: 0 8px;
     }
 
-    .fab:hover + .basket, .basket:hover, .basket.active {
+    .basket.active {
         display: block;
     }
 
@@ -107,10 +107,6 @@
         background: rgba(255, 255, 255, 0.5);
         backdrop-filter: blur(20px);
         transition: box-shadow 0.3s ease 0s;
-    }
-
-    .item:hover {
-        box-shadow: 0 0 20px rgba(0, 0, 0, 0.33);
     }
 
     .group {
@@ -149,10 +145,14 @@
         font-size: 10px;
     }
 
-    @media (max-width: 768px) {
+    @media (min-width: 1025px) {
 
-        .basket {
-            width: 70%;
+        .fab:hover + .basket, .basket:hover{
+            display: block;
+        }
+
+        .item:hover {
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.33);
         }
 
     }

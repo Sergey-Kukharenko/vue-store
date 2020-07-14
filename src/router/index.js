@@ -22,9 +22,9 @@ export default new Router({
         {
             path: '/basket',
             name: 'basket',
-            component: Basket
+            component: Basket,
         },
-        { path: "*", redirect: '/' }
+        {path: "*", redirect: '/'}
     ],
     mode: 'history'
 });

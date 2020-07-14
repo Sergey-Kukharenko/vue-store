@@ -1,5 +1,5 @@
 <template>
-    <div v-scroll="handleScroll" class="p-0_5 m-0_5 header" :class="(scrlY > 0) ? 'active' : '' ">
+    <div v-scroll="handleScroll" class="p-0_5 m-0_5 header" :class="{active: (scrlY > 0)}">
         <div class="d-flex justify-content-space-between">
             <div></div>
             <div class="d-flex align-items-center">
@@ -12,7 +12,7 @@
                     </div>
                     <div class="filter">
                         <div
-                                class="filter-item reveal"
+                                class="mr-2 filter-item reveal"
                                 v-for="(item, index) of filtersItem"
                                 :key="index"
                                 :class="{active: index == selected}"
@@ -179,11 +179,9 @@
 
     .filter-item {
         position: relative;
-        margin-right: 0.75em;
         color: #000;
         border-radius: 6px;
         cursor: pointer;
-        transition: 0.3s ease 0s;
     }
 
     .filter-content:before {
@@ -242,10 +240,6 @@
         transition: opacity 0.3s ease 0s;
     }
 
-    .animate-icon:hover, .filter-box.active .animate-icon {
-        opacity: 1;
-    }
-
     .form {
         width: 160px;
         background: #F3F3F4;
@@ -255,9 +249,8 @@
         transition: 0.3s ease 0s;
     }
 
-    .form:hover {
-        background: #fff;
-        box-shadow: 0 0 3px 0px rgba(78, 78, 78, 0.24);
+    .active > .reveal-text:after {
+        opacity: 0;
     }
 
     .icon {
@@ -267,6 +260,31 @@
     .input {
         width: 100%;
         padding: 1em 0.5em;
+    }
+
+    @media (min-width: 1025px) {
+
+        .animate-icon:hover, .filter-box.active .animate-icon {
+            opacity: 1;
+        }
+
+        .form:hover {
+            background: #fff;
+            box-shadow: 0 0 3px 0px rgba(78, 78, 78, 0.24);
+        }
+
+        .reveal:hover .reveal-text::after {
+            animation: text-revealer 0.6s cubic-bezier(0.0, 0.0, 0.2, 1) 0s 1;
+        }
+
+    }
+
+    @media (max-width: 1024px) {
+
+        .filter-item {
+            padding: 0.125em 0;
+        }
+
     }
 
 </style>

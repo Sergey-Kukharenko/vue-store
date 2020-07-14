@@ -1,0 +1,28 @@
+{
+  "-MAVesJalDrgVeDp_1nD": [
+    {
+      "category": "Watch",
+      "date": "23.06.2020",
+      "description": "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Optio, repellat.",
+      "favorite": false,
+      "id": "4",
+      "img": "/img/products/watch/1.jpg",
+      "name": "Apple Watch Series 5, 44 мм, корпус из алюминия цвета «серый космос», спортивный браслет чёрного цвета",
+      "price": "520",
+      "quantity": 2,
+      "rating": "55"
+    },
+    {
+      "category": "iPad",
+      "date": "23.06.2020",
+      "description": "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Animi, asperiores corporis dolores iusto nostrum praesentium quos repellat. At dicta dolores ea eveniet ex, facilis magni nesciunt officiis ratione tempore, vitae!",
+      "favorite": false,
+      "id": "3",
+      "img": "/img/products/ipad/1.jpg",
+      "name": "Apple iPad Pro (2020) 12,9\" Wi-Fi + Cellular 128 ГБ, «серый космос»",
+      "price": "1020",
+      "quantity": 1,
+      "rating": "12"
+    }
+  ]
+}
