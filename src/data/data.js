@@ -9,7 +9,17 @@ export default [
         category: 'MacBook',
         rating: '200',
         favorite: false,
-        quantity: 1
+        quantity: 1,
+        details: {
+            memory: '16GB 2666MHz DDR4 memory',
+            processor: 'AMD Radeon Pro 5500M with 4GB of GDDR6 memory',
+            storage: '1TB SSD storage',
+            display: '16-inch Retina display with True Tone',
+            ports: 'Four Thunderbolt 3 ports',
+            touch: 'Touch Bar and Touch ID',
+            keyboard: 'Backlit Magic Keyboard - US English',
+        }
+
     },
     {
         id: '2',
@@ -21,7 +31,16 @@ export default [
         category: 'iPhone',
         rating: '45',
         favorite: false,
-        quantity: 1
+        quantity: 1,
+        details: {
+            memory: '16GB 2666MHz DDR4 memory',
+            processor: 'AMD Radeon Pro 5500M with 4GB of GDDR6 memory',
+            storage: '1TB SSD storage',
+            display: '16-inch Retina display with True Tone',
+            ports: 'Four Thunderbolt 3 ports',
+            touch: 'Touch Bar and Touch ID',
+            keyboard: 'Backlit Magic Keyboard - US English',
+        }
     },
     {
         id: '3',
@@ -33,7 +52,16 @@ export default [
         category: 'iPad',
         rating: '12',
         favorite: false,
-        quantity: 1
+        quantity: 1,
+        details: {
+            memory: '16GB 2666MHz DDR4 memory',
+            processor: 'AMD Radeon Pro 5500M with 4GB of GDDR6 memory',
+            storage: '1TB SSD storage',
+            display: '16-inch Retina display with True Tone',
+            ports: 'Four Thunderbolt 3 ports',
+            touch: 'Touch Bar and Touch ID',
+            keyboard: 'Backlit Magic Keyboard - US English',
+        }
     },
     {
         id: '4',
@@ -45,7 +73,16 @@ export default [
         category: 'Watch',
         rating: '55',
         favorite: false,
-        quantity: 1
+        quantity: 1,
+        details: {
+            memory: '16GB 2666MHz DDR4 memory',
+            processor: 'AMD Radeon Pro 5500M with 4GB of GDDR6 memory',
+            storage: '1TB SSD storage',
+            display: '16-inch Retina display with True Tone',
+            ports: 'Four Thunderbolt 3 ports',
+            touch: 'Touch Bar and Touch ID',
+            keyboard: 'Backlit Magic Keyboard - US English',
+        }
     },
     {
         id: '5',
@@ -57,7 +94,16 @@ export default [
         category: 'AirPods',
         rating: '98',
         favorite: false,
-        quantity: 1
+        quantity: 1,
+        details: {
+            memory: '16GB 2666MHz DDR4 memory',
+            processor: 'AMD Radeon Pro 5500M with 4GB of GDDR6 memory',
+            storage: '1TB SSD storage',
+            display: '16-inch Retina display with True Tone',
+            ports: 'Four Thunderbolt 3 ports',
+            touch: 'Touch Bar and Touch ID',
+            keyboard: 'Backlit Magic Keyboard - US English',
+        }
     },
     {
         id: '6',
@@ -69,7 +115,16 @@ export default [
         category: 'MacBook',
         rating: '456',
         favorite: true,
-        quantity: 1
+        quantity: 1,
+        details: {
+            memory: '16GB 2666MHz DDR4 memory',
+            processor: 'AMD Radeon Pro 5500M with 4GB of GDDR6 memory',
+            storage: '1TB SSD storage',
+            display: '16-inch Retina display with True Tone',
+            ports: 'Four Thunderbolt 3 ports',
+            touch: 'Touch Bar and Touch ID',
+            keyboard: 'Backlit Magic Keyboard - US English',
+        }
     },
     {
         id: '7',
@@ -81,7 +136,16 @@ export default [
         category: 'MacBook',
         rating: '32',
         favorite: false,
-        quantity: 1
+        quantity: 1,
+        details: {
+            memory: '16GB 2666MHz DDR4 memory',
+            processor: 'AMD Radeon Pro 5500M with 4GB of GDDR6 memory',
+            storage: '1TB SSD storage',
+            display: '16-inch Retina display with True Tone',
+            ports: 'Four Thunderbolt 3 ports',
+            touch: 'Touch Bar and Touch ID',
+            keyboard: 'Backlit Magic Keyboard - US English',
+        }
     },
     {
         id: '8',
@@ -93,7 +157,16 @@ export default [
         category: 'iPhone',
         rating: '77',
         favorite: true,
-        quantity: 1
+        quantity: 1,
+        details: {
+            memory: '16GB 2666MHz DDR4 memory',
+            processor: 'AMD Radeon Pro 5500M with 4GB of GDDR6 memory',
+            storage: '1TB SSD storage',
+            display: '16-inch Retina display with True Tone',
+            ports: 'Four Thunderbolt 3 ports',
+            touch: 'Touch Bar and Touch ID',
+            keyboard: 'Backlit Magic Keyboard - US English',
+        }
     },
     {
         id: '9',
@@ -105,7 +178,16 @@ export default [
         category: 'iPad',
         rating: '67',
         favorite: false,
-        quantity: 1
+        quantity: 1,
+        details: {
+            memory: '16GB 2666MHz DDR4 memory',
+            processor: 'AMD Radeon Pro 5500M with 4GB of GDDR6 memory',
+            storage: '1TB SSD storage',
+            display: '16-inch Retina display with True Tone',
+            ports: 'Four Thunderbolt 3 ports',
+            touch: 'Touch Bar and Touch ID',
+            keyboard: 'Backlit Magic Keyboard - US English',
+        }
     },
     {
         id: '10',
@@ -117,7 +199,16 @@ export default [
         category: 'iPad',
         rating: '98',
         favorite: true,
-        quantity: 1
+        quantity: 1,
+        details: {
+            memory: '16GB 2666MHz DDR4 memory',
+            processor: 'AMD Radeon Pro 5500M with 4GB of GDDR6 memory',
+            storage: '1TB SSD storage',
+            display: '16-inch Retina display with True Tone',
+            ports: 'Four Thunderbolt 3 ports',
+            touch: 'Touch Bar and Touch ID',
+            keyboard: 'Backlit Magic Keyboard - US English',
+        }
     },
     {
         id: '11',
@@ -129,7 +220,16 @@ export default [
         category: 'MacBook',
         rating: '63',
         favorite: false,
-        quantity: 1
+        quantity: 1,
+        details: {
+            memory: '16GB 2666MHz DDR4 memory',
+            processor: 'AMD Radeon Pro 5500M with 4GB of GDDR6 memory',
+            storage: '1TB SSD storage',
+            display: '16-inch Retina display with True Tone',
+            ports: 'Four Thunderbolt 3 ports',
+            touch: 'Touch Bar and Touch ID',
+            keyboard: 'Backlit Magic Keyboard - US English',
+        }
     },
     {
         id: '12',
@@ -141,6 +241,15 @@ export default [
         category: 'MacBook',
         rating: '600',
         favorite: true,
-        quantity: 1
+        quantity: 1,
+        details: {
+            memory: '16GB 2666MHz DDR4 memory',
+            processor: 'AMD Radeon Pro 5500M with 4GB of GDDR6 memory',
+            storage: '1TB SSD storage',
+            display: '16-inch Retina display with True Tone',
+            ports: 'Four Thunderbolt 3 ports',
+            touch: 'Touch Bar and Touch ID',
+            keyboard: 'Backlit Magic Keyboard - US English',
+        }
     }
 ]

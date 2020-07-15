@@ -91,8 +91,7 @@
     .basket-background {
         display: none;
         width: 100%;
-        background: rgba(255, 255, 255, 0.07);
-        backdrop-filter: saturate(180%) blur(20px);
+        background: #fff;
         border-radius: 16px;
         box-shadow: 0 0 20px rgba(0, 0, 0, 0.33);
     }
@@ -102,10 +101,8 @@
         z-index: 2;
         border-radius: 12px;
         box-shadow: 0 0px 6px 0 rgba(32, 33, 36, 0.28);
-        /*background: #fff;*/
         border-radius: 24px;
-        background: rgba(255, 255, 255, 0.5);
-        backdrop-filter: blur(20px);
+        background: #fff;
         transition: box-shadow 0.3s ease 0s;
     }
 
@@ -153,6 +150,16 @@
 
         .item:hover {
             box-shadow: 0 0 20px rgba(0, 0, 0, 0.33);
+        }
+
+        .basket-background {
+            background: rgba(255, 255, 255, 0.07);
+            backdrop-filter: saturate(180%) blur(20px);
+        }
+
+        .item {
+            background: rgba(255, 255, 255, 0.5);
+            backdrop-filter: blur(20px);
         }
 
     }

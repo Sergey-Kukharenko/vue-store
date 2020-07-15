@@ -409,6 +409,10 @@ a {
     margin: -2em;
 }
 
+.m-a {
+    margin: auto;
+}
+
 @media (max-width: 500px) {
 
     .sm-m-1 {

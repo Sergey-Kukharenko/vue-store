@@ -37,6 +37,11 @@ export default {
     getters: {
         products(state) {
             return state.products
+        },
+        productById(state) {
+            return detailId => {
+                return state.products.find(product => product.id === detailId)
+            }
         }
     }
 }

@@ -79,7 +79,7 @@
                     {name: 'rating', text: 'rating', selected: false, type: 'rating'},
                     {name: 'favorite', text: 'favorite', selected: false, type: 'favorite'},
                 ]
-            }
+            }// 19 закончил
         },
         methods: {
             handleScroll: function () {
@@ -131,12 +131,10 @@
     .header {
         position: sticky;
         top: 0;
-        background: #ffffffc7;
+        background: #fff;
         z-index: 3;
         border-radius: 16px;
         box-shadow: 0 0 20px rgba(0, 0, 0, .1);
-        backdrop-filter: blur(20px);
-        /*transition: 0.3s ease 0s;*/
     }
 
     .header.active {
@@ -275,6 +273,11 @@
 
         .reveal:hover .reveal-text::after {
             animation: text-revealer 0.6s cubic-bezier(0.0, 0.0, 0.2, 1) 0s 1;
+        }
+
+        .header {
+            background: #ffffffc7;
+            backdrop-filter: blur(20px);
         }
 
     }

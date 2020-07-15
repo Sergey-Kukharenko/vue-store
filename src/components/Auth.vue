@@ -194,8 +194,7 @@
         position: relative;
         z-index: 2;
         background: rgba(0, 0, 0, 0.5);
-        background: #ffffff29;
-        backdrop-filter: blur(10px);
+        background: #fff;
         border-radius: 6px;
     }
 
@@ -242,8 +241,7 @@
         border-radius: 6px;
         overflow: hidden;
         z-index: -1;
-        background: rgba(0, 0, 0, 0.5);
-        backdrop-filter: blur(10px);
+        background: #fff;
         clip-path: inset(2rem 0 2rem 2rem round 10px);
         contain: strict;
         box-shadow: 0px 0px 20px 0px #a5a5a5;
@@ -296,6 +294,20 @@
     .form:hover .buttons {
         opacity: 1;
         transition: opacity 0.3s ease 0.2s;
+    }
+
+    @media (min-width: 1025px) {
+
+        .inputs {
+            background: #ffffff29;
+            backdrop-filter: blur(10px);
+        }
+
+        .group {
+            background: rgba(0, 0, 0, 0.5);
+            backdrop-filter: blur(10px);
+        }
+
     }
 
 </style>

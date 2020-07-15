@@ -153,9 +153,7 @@
         border-radius: 12px;
         box-shadow: 0 0px 6px 0 rgba(32, 33, 36, 0.28);
         /* background: #fff; */
-        background: rgba(255, 255, 255, 0.5);
-        -webkit-backdrop-filter: blur(20px);
-        backdrop-filter: blur(20px);
+        background: #fff;
         border-radius: 24px;
         box-sizing: border-box;
         transition: box-shadow 0.3s ease 0s;
@@ -203,6 +201,15 @@
 
     .icon {
         font-size: 0.75em;
+    }
+
+    @media (min-width: 1025px) {
+
+        .item {
+            background: rgba(255, 255, 255, 0.5);
+            backdrop-filter: blur(20px);
+        }
+
     }
 
     @media (max-width: 1340px) {

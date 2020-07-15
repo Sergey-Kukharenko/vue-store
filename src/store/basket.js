@@ -1,4 +1,4 @@
-import {getNameKey, fillArray} from '../utils'
+import {fillArray, getNameKey} from '../utils'
 import * as fb from 'firebase'
 
 export default {
@@ -56,7 +56,11 @@ export default {
             commit('clearError')
             commit('setLoading', true);
             try {
-                const basket = JSON.parse(localStorage.getItem('key'))
+                let basket = []
+                const data = JSON.parse(localStorage.getItem('key'))
+                if(data) {
+                    basket = data
+                }
                 commit('setBasket', basket)
             } catch (error) {
                 commit('setError', error.message);
