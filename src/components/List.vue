@@ -7,14 +7,14 @@
                     :key="product.id"
             >
                 <div
-                        class="like"
+                        class="p-1 m--1 like"
                         :class="{active: product.favorite}"
                         @click="toggleLike(product), updateFavorites(product)"
                 >
                     <i class="fa fa-heart like-icon"></i>
                 </div>
                 <router-link
-                        class="relative-parent figure"
+                        class="relative-parent mt-1_25 figure"
                         :to="'/products/'+ product.id"
                         exact
                 >
@@ -139,6 +139,8 @@
     }
 
     .like {
+        position: absolute;
+        z-index: 2;
         cursor: pointer;
     }
 
@@ -147,13 +149,16 @@
         transition: 0.3s ease 0s;
     }
 
-    .like:hover .like-icon, .like.active .like-icon {
+    .like:hover .like-icon{
+        color: #828282;
+    }
+
+    .like.active .like-icon {
         color: #000;
     }
 
     .figure {
         width: 100%;
-        margin: 0 auto;
         border-radius: 16px;
         padding-bottom: 82%;
     }

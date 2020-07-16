@@ -27,9 +27,6 @@
         const parsed = JSON.stringify(this.getAdds());
         localStorage.setItem('key', parsed);
       }
-    },
-    mounted() {
-      localStorage.removeItem('key')
     }
   }
 </script>

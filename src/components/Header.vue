@@ -1,7 +1,6 @@
 <template>
     <div v-scroll="handleScroll" class="p-0_5 m-0_5 header" :class="{active: (scrlY > 0)}">
-        <div class="d-flex justify-content-space-between">
-            <div></div>
+        <div class="d-flex justify-content-end">
             <div class="d-flex align-items-center">
                 <div
                         class="pt-0_5 pb-0_5 pl-0_35 pr-0_35 filter-box"
@@ -43,7 +42,7 @@
                         <img src="../../public/img/icons/sign-in.svg" class="img-full">
                     </div>
                 </div>
-                <form class="d-flex align-items-center ml-0_5 form" @submit="(e) => {e.preventDefault()}">
+                <form class="d-flex align-items-center pl-0_7 pr-0_7 ml-0_5 form" @submit="(e) => {e.preventDefault()}">
                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16" fill="none"
                          role="img"
                          class="flex-shrink-none icon">
@@ -242,7 +241,6 @@
         width: 160px;
         background: #F3F3F4;
         border-radius: 6px;
-        padding: 0 0.7em;
         box-sizing: border-box;
         transition: 0.3s ease 0s;
     }

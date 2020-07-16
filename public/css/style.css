@@ -167,6 +167,26 @@ a {
     padding: 0.5em;
 }
 
+.pl-0_7 {
+    padding-left: 0.7em;
+}
+
+.pt-0_7 {
+    padding-top: 0.7em;
+}
+
+.pr-0_7 {
+    padding-right: 0.7em;
+}
+
+.pb-0_7 {
+    padding-bottom: 0.7em;
+}
+
+.p-0_7 {
+    padding: 0.7em;
+}
+
 .pl-0_75 {
     padding-left: 0.75em;
 }
@@ -333,11 +353,31 @@ a {
     margin: 0.5em;
 }
 
-.m-0_75{
+.ml-0_7 {
+    margin-left: 0.7em;
+}
+
+.mt-0_7 {
+    margin-top: 0.7em;
+}
+
+.mr-0_7 {
+    margin-right: 0.7em;
+}
+
+.mb-0_7 {
+    margin-bottom: 0.7em;
+}
+
+.m-0_7 {
+    margin: 0.7em;
+}
+
+.m-0_75 {
     margin: 0.75em;
 }
 
-.m--0_75{
+.m--0_75 {
     margin: -0.75em;
 }
 
@@ -363,6 +403,26 @@ a {
 
 .m--1 {
     margin: -1em;
+}
+
+.ml-1_25 {
+    margin-left: 1.25em;
+}
+
+.mt-1_25 {
+    margin-top: 1.25em;
+}
+
+.mr-1_25 {
+    margin-right: 1.25em;
+}
+
+.mb-1_25 {
+    margin-bottom: 1.25em;
+}
+
+.m-1_25 {
+    margin: 1.25em;
 }
 
 .ml-1_5 {
@@ -454,6 +514,9 @@ a {
     text-align: center;
 }
 
+.full-height {
+    height: 100%;
+}
 /*animations*/
 @keyframes wiggle {
     2% {

@@ -33,12 +33,16 @@
                 </div>
             </div>
         </div>
-        <div class="p-1 m-0_35 d-flex flex-direction-column justify-content-space-between sidebar">
-            <div class="d-flex align-items-center justify-content-space-between">
-                <h2 class="title">Total</h2>
-                <h2 class="d-flex align-items-center title"><span>$</span> <span>{{sumPrices}}</span></h2>
+        <div class="sidebar m-0_35">
+            <div class="full-height sidebar-wrap">
+                <div class="p-1 d-flex flex-direction-column justify-content-space-between sidebar-container">
+                    <div class="d-flex align-items-center justify-content-space-between">
+                        <h2 class="title">Total</h2>
+                        <h2 class="d-flex align-items-center title"><span>$</span> <span>{{sumPrices}}</span></h2>
+                    </div>
+                    <div class="p-1 mt-1 text-bold pay" @click="result">pay</div>
+                </div>
             </div>
-            <div class="p-1 mt-1 text-bold pay" @click="result">pay</div>
         </div>
     </div>
     <Loading v-else/>
@@ -58,9 +62,6 @@
                 return this.$store.getters.sumPrices
             }
         },
-        // filters: {
-        //     truncate: (text, length, suffix) => text.substring(0, length) + suffix
-        // },
         methods: {
             updateState(product, quantity) {
                 return this.$store.dispatch('updateState', {product, quantity: quantity}).then(() => {
@@ -99,17 +100,27 @@
 <style scoped>
 
     .sidebar {
+        width: 25%;
+        max-height: calc(100vh - 1.25em);
         position: -webkit-sticky;
         position: sticky;
         top: 0.5em;
         z-index: 2;
-        width: 25%;
-        max-height: calc(100vh - 1.25em);
-        box-shadow: 0 0px 6px 0 rgba(32, 33, 36, 0.28);
+        box-sizing: border-box;
+    }
+
+    .sidebar-wrap{
+        position: relative;
+    }
+
+    .sidebar-container {
+        position: relative;
+        z-index: 2;
+        height: 100%;
         background: #fff;
+        box-shadow: 0 0px 6px 0 rgba(32, 33, 36, 0.28);
         border-radius: 24px;
         box-sizing: border-box;
-        transition: box-shadow 0.3s ease 0s;
     }
 
     .title {
@@ -229,6 +240,7 @@
         .basket {
             flex-wrap: wrap;
             flex-direction: column;
+            min-height: calc(100vh - 0.7em);
         }
 
         .list, .sidebar {
@@ -240,6 +252,20 @@
             top: inherit;
             bottom: 0.5em;
             margin: 0.35em 0 0 0;
+        }
+
+        .sidebar-wrap:after{
+            content: '';
+            display: block;
+            position: absolute;
+            top: -1em;
+            left: -0.35em;
+            right: -0.35em;
+            bottom: -0.5em;
+            z-index: 1;
+            margin: auto;
+            background: linear-gradient(to bottom, #ffffff94, #9a9a9a2b);
+            border-radius: 24px 24px 0 0;
         }
 
     }
