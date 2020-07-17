@@ -157,6 +157,10 @@
         cursor: pointer;
     }
 
+    .filter-box.active .filter-button{
+        opacity: 1;
+    }
+
     .filter-icon {
         width: 14px;
     }
@@ -215,7 +219,6 @@
         display: inline-block;
         position: relative;
         overflow: hidden;
-
     }
 
     .filter-text {
@@ -309,12 +312,12 @@
         }
 
         .filter-content {
-            margin: -0.35em 0;
+            margin: -0.3em 0;
         }
 
         .filter-text {
             display: block;
-            padding: 0.3em 0.3em;
+            padding: 0.6em 0.3em;
         }
 
     }
