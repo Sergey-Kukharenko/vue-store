@@ -15,7 +15,6 @@ export default {
             state.user = payload;
         }
     },
-    // начать с 20
     actions: {
         async registerUser ({commit}, {email, password}) {
             commit('clearError')

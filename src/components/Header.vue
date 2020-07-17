@@ -1,6 +1,6 @@
 <template>
-    <div v-scroll="handleScroll" class="p-0_5 m-0_5 header" :class="{active: (scrlY > 0)}">
-        <div class="d-flex justify-content-end">
+    <div v-scroll="handleScroll" class="p-0_5 m-0_35 header" :class="{active: (scrlY > 0)}">
+        <div class="d-flex justify-content-end header-container">
             <div class="d-flex align-items-center">
                 <div
                         class="pt-0_5 pb-0_5 pl-0_35 pr-0_35 filter-box"
@@ -78,7 +78,7 @@
                     {name: 'rating', text: 'rating', selected: false, type: 'rating'},
                     {name: 'favorite', text: 'favorite', selected: false, type: 'favorite'},
                 ]
-            }// 19 закончил
+            }
         },
         methods: {
             handleScroll: function () {
@@ -103,7 +103,7 @@
             // },
             onLogout() {
                 return this.$store.dispatch('logoutUser')
-            }
+            },
         },
         computed: {
             isUserLoggedIn() {
@@ -126,6 +126,15 @@
 </script>
 
 <style scoped>
+
+    /*disable zoom in ios*/
+    @media screen and (-webkit-min-device-pixel-ratio:0) {
+        select,
+        textarea,
+        input {
+            font-size: 16px;
+        }
+    }
 
     .header {
         position: sticky;
@@ -284,6 +293,28 @@
 
         .filter-item {
             padding: 0.125em 0;
+        }
+
+        .header-container{
+            position: relative;
+        }
+
+        .filter-box{
+            position: static;
+        }
+
+        .filter {
+            left: 0px;
+            margin: 2em -0.5em 0;
+        }
+
+        .filter-content {
+            margin: -0.35em 0;
+        }
+
+        .filter-text {
+            display: block;
+            padding: 0.3em 0.3em;
         }
 
     }

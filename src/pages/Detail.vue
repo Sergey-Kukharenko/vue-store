@@ -42,6 +42,12 @@
             updateState(product, quantity) {
                 return this.$store.dispatch('updateState', {product, quantity: quantity})
             },
+            scrollToTop() {
+                return window.scrollTo(0, 0);
+            }
+        },
+        created() {
+            this.scrollToTop()
         }
     }
 </script>

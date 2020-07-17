@@ -149,10 +149,6 @@
         transition: 0.3s ease 0s;
     }
 
-    .like:hover .like-icon{
-        color: #828282;
-    }
-
     .like.active .like-icon {
         color: #000;
     }
@@ -185,6 +181,14 @@
         width: 20px;
         border-radius: 50%;
         cursor: pointer;
+    }
+
+    @media (min-width: 1025px) {
+
+        .like:hover .like-icon {
+            color: #828282;
+        }
+
     }
 
     @media (max-width: 991px) {
