@@ -25,6 +25,8 @@
     import Fab from "../components/Fab";
     import BasketModal from "../components/BasketModal";
 
+    import {scrollToTop} from "../utils";
+
     export default {
         name: "Detail",
         props: ['id'],
@@ -42,12 +44,10 @@
             updateState(product, quantity) {
                 return this.$store.dispatch('updateState', {product, quantity: quantity})
             },
-            scrollToTop() {
-                return window.scrollTo(0, 0);
-            }
+
         },
         created() {
-            this.scrollToTop()
+            scrollToTop()
         }
     }
 </script>

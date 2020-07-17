@@ -50,6 +50,7 @@
 
 <script>
     import Loading from "../components/Loading";
+    import {scrollToTop} from "../utils";
 
     export default {
         name: "Basket",
@@ -93,6 +94,9 @@
             if (this.basketLength() === 0) {
                 this.$router.push('/');
             }
+        },
+        created() {
+            scrollToTop()
         }
     }
 </script>

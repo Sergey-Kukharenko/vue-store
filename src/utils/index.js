@@ -1,4 +1,4 @@
-export const compose = (...functions) => args => functions.reduceRight((arg, fn) => fn(arg), args);
+export const compose = (...functions) => args => functions.reduceRight((arg, fn) => fn(arg), args)
 
 export const objsArray = objs => Object.values(objs).filter(item => [].push(item))
 
@@ -19,3 +19,5 @@ export const objsArrayCreateProp = (objs, key = 'ownerId') => {
 export const getNameKey = arr => Object.keys(arr).find(item => item)
 
 export const fillArray = (arr, newArr) => Object.values(arr).map(obj => obj.map(item => newArr.push(item)))
+
+export const scrollToTop = () => window.scrollTo(0, 0)
