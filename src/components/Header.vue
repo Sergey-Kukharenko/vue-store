@@ -251,8 +251,10 @@
 
     .form {
         width: 160px;
-        background: #F3F3F4;
+        background: #fff;
+        border: 1px solid #efefef;
         border-radius: 6px;
+        box-shadow: 0 0 0px 0px rgb(214, 214, 214);
         box-sizing: border-box;
         transition: 0.3s ease 0s;
     }
@@ -268,6 +270,7 @@
     .input {
         width: 100%;
         padding: 1em 0.5em;
+        margin: -1px;
     }
 
     @media (min-width: 1025px) {
@@ -278,7 +281,8 @@
 
         .form:hover {
             background: #fff;
-            box-shadow: 0 0 3px 0px rgba(78, 78, 78, 0.24);
+            /*box-shadow: 0 0 3px 0px rgba(78, 78, 78, 0.24);*/
+            box-shadow: 0 0 3px 0px rgb(199, 199, 199);
         }
 
         .reveal:hover .reveal-text::after {

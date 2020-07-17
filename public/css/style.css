@@ -568,8 +568,8 @@ input, button{
 }
 
 
-input::-webkit-input-placeholder, textarea::-webkit-input-placeholder {transition: 0.3s ease 0s}
-input::-moz-placeholder, textarea::-moz-placeholder {transition: 0.3s ease 0s}
+input::-webkit-input-placeholder, textarea::-webkit-input-placeholder {color: #9E9EA7; transition: 0.3s ease 0s;}
+input::-moz-placeholder, textarea::-moz-placeholder {color: #9E9EA7; transition: 0.3s ease 0s;}
 input:focus::-webkit-input-placeholder, textarea:focus::-webkit-input-placeholder {opacity:0;}
 input:focus::-moz-placeholder, textarea:focus::-moz-placeholder {opacity:0;}
 
