@@ -1,12 +1,17 @@
 import data from "../data/data";
+import {createArrayBetweenValues, sum} from "../utils";
 
 export default {
     state: {
-        products: []
+        products: [],
+        filled: false
     },
     mutations: {
-        loadProducts(state, payload) {
+        fetchProducts(state, payload) {
             state.products = payload;
+        },
+        loadMoreProducts(state, payload) {
+            state.products = [...state.products, ...payload]
         },
     },
     actions: {
@@ -15,16 +20,40 @@ export default {
             commit('setLoading', true);
 
 
-            const mockproducts = data;
-
+            const mockProducts = data;
             const products = []
+            // const products2 = []
 
             try {
-                mockproducts.map((item) => {
-                    products.push(item)
-                })
+                const partOfArray = (arr, size) => arr.slice(0, size).map(item => products.push(item))
 
-                commit('loadProducts', products)
+                partOfArray(mockProducts, 8)
+                commit('fetchProducts', products)
+                commit('setLoading', false)
+
+            } catch (error) {
+                commit('setError', error.message);
+                commit('setLoading', false);
+                throw error;
+            }
+        },
+        loadMoreProducts({commit, getters}) {
+            commit('clearError')
+            commit('setLoading', true);
+            try {
+                const products = getters.products
+                const moreProducts = []
+
+                if (products.length === data.length) {
+                    this.filled = true
+                    return
+                } else {
+                    const lengthArray = getters.products.length
+                    const increaseByNumber = 4
+                    const uploadNumber = sum(lengthArray, increaseByNumber)
+                    createArrayBetweenValues(lengthArray, uploadNumber, data, moreProducts)
+                }
+                commit('loadMoreProducts', moreProducts)
                 commit('setLoading', false)
 
             } catch (error) {

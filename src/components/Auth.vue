@@ -67,7 +67,7 @@
                 </button>
                 <span class="p-0_75 button-text absolute-center text-center">or</span>
                 <a class="d-flex align-items-center p-0_75 button-text button"
-                   @click="[isRegistered=!isRegistered, reset()]">
+                   @click="[toggleRegister(), reset()]">
                     <span v-if="isRegistered">log</span>
                     <span v-else>sign</span>
                     <span class="ml-0_2">in</span>
@@ -99,6 +99,9 @@
         methods: {
             hideAuth() {
                 document.body.classList.remove('is-authentication')
+            },
+            toggleRegister() {
+                this.isRegistered = !this.isRegistered
             },
             onSubmit() {
                 const user = {

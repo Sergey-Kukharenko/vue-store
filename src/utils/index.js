@@ -1,3 +1,5 @@
+import data from "../data/data";
+
 export const compose = (...functions) => args => functions.reduceRight((arg, fn) => fn(arg), args)
 
 export const objsArray = objs => Object.values(objs).filter(item => [].push(item))
@@ -21,3 +23,7 @@ export const getNameKey = arr => Object.keys(arr).find(item => item)
 export const fillArray = (arr, newArr) => Object.values(arr).map(obj => obj.map(item => newArr.push(item)))
 
 export const scrollToTop = () => window.scrollTo(0, 0)
+
+export const createArrayBetweenValues = (from, to, arr, newArr) =>  [...new Array(to - from)].map((_, idx) => newArr.push(data[from + idx]))
+
+export const sum = (a, b) => a + b

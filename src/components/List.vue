@@ -119,7 +119,16 @@
             },
             loading() {
                 return this.$store.getters.loading
+            },
+            scroll() {
+                window.onscroll = () => {
+                    const bottomOfWindow = document.documentElement.scrollTop + window.innerHeight === document.documentElement.offsetHeight;
+                    if (bottomOfWindow) this.$store.dispatch('loadMoreProducts')
+                };
             }
+        },
+        mounted() {
+            this.scroll();
         }
     }
 </script>
