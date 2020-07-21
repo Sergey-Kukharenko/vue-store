@@ -24,6 +24,8 @@ export const fillArray = (arr, newArr) => Object.values(arr).map(obj => obj.map(
 
 export const scrollToTop = () => window.scrollTo(0, 0)
 
-export const createArrayBetweenValues = (from, to, arr, newArr) =>  [...new Array(to - from)].map((_, idx) => newArr.push(data[from + idx]))
+export const createArrayBetweenValues = (from, to, arr, newArr) =>  [...new Array(to - from)].map((_, idx) => (data[from + idx] != undefined) && newArr.push(data[from + idx]))
 
 export const sum = (a, b) => a + b
+
+export const getMultipleElementsFromArray = (arr, newArr, size) => arr.slice(0, size).map(item => newArr.push(item))

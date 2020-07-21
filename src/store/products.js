@@ -1,5 +1,5 @@
 import data from "../data/data";
-import {createArrayBetweenValues, sum} from "../utils";
+import {createArrayBetweenValues, getMultipleElementsFromArray, sum} from "../utils";
 
 export default {
     state: {
@@ -22,12 +22,8 @@ export default {
 
             const mockProducts = data;
             const products = []
-            // const products2 = []
-
             try {
-                const partOfArray = (arr, size) => arr.slice(0, size).map(item => products.push(item))
-
-                partOfArray(mockProducts, 8)
+                getMultipleElementsFromArray(mockProducts, products, 12);
                 commit('fetchProducts', products)
                 commit('setLoading', false)
 
