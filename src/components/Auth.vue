@@ -103,8 +103,14 @@
             toggleRegister() {
                 this.isRegistered = !this.isRegistered
             },
-            onFetchBasket() {
+            clearBasket() {
+                return this.$store.dispatch('clearBasket')
+            },
+            fetchBasket() {
                 return this.$store.dispatch('fetchBasket')
+            },
+            removeLocalStorage() {
+                return localStorage.removeItem('key')
             },
             onSubmit() {
                 const user = {
@@ -124,7 +130,9 @@
                         .catch(err => console.log(err))
                 }
 
-                this.onFetchBasket()
+                this.removeLocalStorage()
+                this.clearBasket()
+                this.fetchBasket()
                 this.hideAuth()
                 this.reset()
 

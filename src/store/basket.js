@@ -127,6 +127,9 @@ export default {
                 ads.remove()
             }
             ads.push(getters.basket)
+        },
+        clearBasket({commit}) {
+            commit('clearState');
         }
     },
     getters: {
