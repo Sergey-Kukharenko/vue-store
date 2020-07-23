@@ -1,5 +1,6 @@
 import {fillArray, getNameKey} from '../utils'
 import * as fb from 'firebase'
+import user from "./user";
 
 export default {
     state: {
@@ -33,12 +34,22 @@ export default {
         },
     },
     actions: {
-        async fetchBasket({commit}) {
+        async fetchBasket({commit, getters}) {
             commit('clearError')
             commit('setLoading', true);
             try {
-                const fbVal = await fb.database().ref('ads').once('value');
-                const ads = fbVal.val();
+
+                let ads;
+
+                if (getters.isUser) {
+                    const userId = getters.isUser.id
+                    const userAds = await fb.database().ref('users/' + userId + '/ads/').once('value');
+                    ads = userAds.val();
+                } else {
+                    const noneAds = await fb.database().ref('ads').once('value');
+                    ads = noneAds.val();
+                }
+
                 if (ads !== null) {
                     const keyArray = getNameKey(ads)
                     const basket = [];
@@ -46,6 +57,7 @@ export default {
                     commit('loadBasket', {basket, keyArray})
                 }
                 commit('setLoading', false)
+
             } catch (error) {
                 commit('setError', error.message);
                 commit('setLoading', false);
@@ -81,19 +93,40 @@ export default {
             }
         },
         async sendOrder({commit, getters}) {
-            const refOrders = await fb.database().ref('orders')
-            refOrders.remove()
-            refOrders.push(getters.basket)
+
+            let ads, orders;
+
+            if (getters.isUser) {
+                const userId = getters.isUser.id
+                orders = await fb.database().ref('users/' + userId + '/orders/')
+                ads = await fb.database().ref('users/' + userId + '/ads/')
+            } else {
+                orders = await fb.database().ref('orders')
+                ads = await fb.database().ref('ads')
+
+            }
+
+            orders.remove()
+            orders.push(getters.basket)
             commit('clearState')
-            const refAds = await fb.database().ref('ads')
-            refAds.remove()
+            ads.remove()
+
         },
         async addedItems({getters}) {
-            const ref = await fb.database().ref('ads')
-            if (getters.key !== '') {
-                ref.remove()
+
+            let ads;
+
+            if (getters.isUser) {
+                const userId = getters.isUser.id
+                ads = await fb.database().ref('users/' + userId + '/ads/')
+            } else {
+                ads = await fb.database().ref('ads')
             }
-            ref.push(getters.basket)
+
+            if (getters.key !== '') {
+                ads.remove()
+            }
+            ads.push(getters.basket)
         }
     },
     getters: {
@@ -108,6 +141,13 @@ export default {
         },
         key(state) {
             return state.keyArray
+        },
+        isUser() {
+            return user.state.user
+        }
+        ,
+        isUserF() {
+            return user.state.user
         }
     }
 }

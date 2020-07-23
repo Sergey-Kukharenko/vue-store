@@ -103,6 +103,9 @@
             toggleRegister() {
                 this.isRegistered = !this.isRegistered
             },
+            onFetchBasket() {
+                return this.$store.dispatch('fetchBasket')
+            },
             onSubmit() {
                 const user = {
                     email: this.email,
@@ -121,6 +124,7 @@
                         .catch(err => console.log(err))
                 }
 
+                this.onFetchBasket()
                 this.hideAuth()
                 this.reset()
 

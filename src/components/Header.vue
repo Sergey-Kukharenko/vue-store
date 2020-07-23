@@ -36,7 +36,7 @@
                     </div>
                     <div
                             class="pt-0_5 pb-0_5 pl-0_35 pr-0_35 animate-icon auth"
-                            @click="onLogout"
+                            @click="[onLogout(), onFetchBasket()]"
                             v-else
                     >
                         <img src="../../public/img/icons/sign-in.svg" class="img-full">
@@ -103,6 +103,9 @@
             // },
             onLogout() {
                 return this.$store.dispatch('logoutUser')
+            },
+            onFetchBasket() {
+                return this.$store.dispatch('fetchBasket')
             },
         },
         computed: {
