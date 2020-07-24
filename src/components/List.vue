@@ -158,7 +158,7 @@
         transition: 0.3s ease 0s;
     }
 
-    .like.active .like-icon {
+    .like.active .like-icon, .like:hover.active .like-icon {
         color: #000;
     }
 

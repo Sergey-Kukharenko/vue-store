@@ -11,27 +11,18 @@ export default {
         updateFavorites({favorites}, payload) {
             const arr = favorites;
             const foundItem = arr.find(item => item.name === payload.name && item.id === payload.id);
-
             foundItem ? arr.splice(arr.indexOf(foundItem), 1) : arr.push(payload)
-
-            console.log(arr)
-
         },
     },
     actions: {
         fetchFavorites({commit}) {
             commit('clearError')
             commit('setLoading', true);
-
-
-            const mockproducts = data;
-
+            const mockProducts = data;
             try {
-                const favorites = mockproducts.filter(item => item.favorite)
-
+                const favorites = mockProducts.filter(item => item.favorite)
                 commit('loadFavorites', favorites)
                 commit('setLoading', false)
-
             } catch (error) {
                 commit('setError', error.message);
                 commit('setLoading', false);

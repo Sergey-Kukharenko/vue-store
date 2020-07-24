@@ -23,15 +23,17 @@ new Vue({
     });
 
     fb.auth().onAuthStateChanged(user => {
-      if(user) {
+      if (user) {
         this.$store.dispatch('autoLoginUser', user)
+        this.$store.dispatch('fetchBasket')
+      } else {
         this.$store.dispatch('fetchBasket')
       }
     });
 
     this.$store.dispatch('fetchProducts')
     this.$store.dispatch('fetchFavorites')
-    this.$store.dispatch('fetchBasket')
+
     this.$store.dispatch('fetchLocalStorage')
   },
   render: h => h(App),

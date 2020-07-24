@@ -79,6 +79,7 @@
 
 <script>
     import {email, minLength, required, sameAs} from 'vuelidate/lib/validators'
+    import {removeLocalStorage} from "../utils";
 
     export default {
         name: "Auth",
@@ -110,7 +111,7 @@
                 return this.$store.dispatch('fetchBasket')
             },
             removeLocalStorage() {
-                return localStorage.removeItem('key')
+                return removeLocalStorage('key')
             },
             onSubmit() {
                 const user = {
@@ -132,7 +133,7 @@
 
                 this.removeLocalStorage()
                 this.clearBasket()
-                this.fetchBasket()
+                // this.fetchBasket()
                 this.hideAuth()
                 this.reset()
 

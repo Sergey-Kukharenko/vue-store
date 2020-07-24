@@ -5,6 +5,8 @@
 </template>
 
 <script>
+  import {setLocalStorage} from "./utils";
+
   export default {
     name: 'App',
     created() {
@@ -24,8 +26,8 @@
         return this.$store.getters.basket
       },
       saveLocalStorage() {
-        const parsed = JSON.stringify(this.getAdds());
-        localStorage.setItem('key', parsed);
+        const ads = this.getAdds();
+        setLocalStorage('key', ads)
       }
     }
   }

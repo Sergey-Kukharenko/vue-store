@@ -1,6 +1,7 @@
-import {fillArray, getNameKey} from '../utils'
-import * as fb from 'firebase'
+import {fillArray, getLocalStorage, getNameKey} from '../utils'
 import user from "./user";
+import {firebaseGet, firebaseGetVal} from "../firebase";
+import {pathAds, pathOrders, pathUserAds, pathUserOrders} from "../firebase/path";
 
 export default {
     state: {
@@ -26,30 +27,25 @@ export default {
             state.basket = basket;
             state.keyArray = keyArray;
         },
-        clearState(state) {
-            state.basket = [];
-        },
         setBasket(state, basket) {
             state.basket = basket;
         },
+        clearState(state) {
+            state.basket = [];
+        }
     },
     actions: {
         async fetchBasket({commit, getters}) {
             commit('clearError')
             commit('setLoading', true);
             try {
-
                 let ads;
-
                 if (getters.isUser) {
                     const userId = getters.isUser.id
-                    const userAds = await fb.database().ref('users/' + userId + '/ads/').once('value');
-                    ads = userAds.val();
+                    ads = await firebaseGetVal(pathUserAds(userId))
                 } else {
-                    const noneAds = await fb.database().ref('ads').once('value');
-                    ads = noneAds.val();
+                    ads = await firebaseGetVal(pathAds)
                 }
-
                 if (ads !== null) {
                     const keyArray = getNameKey(ads)
                     const basket = [];
@@ -57,7 +53,6 @@ export default {
                     commit('loadBasket', {basket, keyArray})
                 }
                 commit('setLoading', false)
-
             } catch (error) {
                 commit('setError', error.message);
                 commit('setLoading', false);
@@ -69,8 +64,9 @@ export default {
             commit('setLoading', true);
             try {
                 let basket = []
-                const data = JSON.parse(localStorage.getItem('key'))
-                if(data) {
+                const data = getLocalStorage('key')
+
+                if (data) {
                     basket = data
                 }
                 commit('setBasket', basket)
@@ -93,42 +89,34 @@ export default {
             }
         },
         async sendOrder({commit, getters}) {
-
             let ads, orders;
-
             if (getters.isUser) {
                 const userId = getters.isUser.id
-                orders = await fb.database().ref('users/' + userId + '/orders/')
-                ads = await fb.database().ref('users/' + userId + '/ads/')
+                orders = await firebaseGet(pathUserOrders(userId))
+                ads = await firebaseGet(pathUserAds(userId))
             } else {
-                orders = await fb.database().ref('orders')
-                ads = await fb.database().ref('ads')
-
+                orders = await firebaseGet(pathOrders)
+                ads = await firebaseGet(pathAds)
             }
-
             orders.remove()
             orders.push(getters.basket)
             commit('clearState')
             ads.remove()
-
         },
         async addedItems({getters}) {
-
             let ads;
-
             if (getters.isUser) {
                 const userId = getters.isUser.id
-                ads = await fb.database().ref('users/' + userId + '/ads/')
+                ads = await firebaseGet(pathUserAds(userId))
             } else {
-                ads = await fb.database().ref('ads')
+                ads = await firebaseGet(pathAds)
             }
-
             if (getters.key !== '') {
                 ads.remove()
             }
             ads.push(getters.basket)
         },
-        clearBasket({commit}) {
+        clearBasket({commit}) { // https://www.npmjs.com/package/emailjs-com
             commit('clearState');
         }
     },
@@ -146,10 +134,6 @@ export default {
             return state.keyArray
         },
         isUser() {
-            return user.state.user
-        }
-        ,
-        isUserF() {
             return user.state.user
         }
     }
